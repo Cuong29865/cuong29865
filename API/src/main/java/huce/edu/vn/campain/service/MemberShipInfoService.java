@@ -1,6 +1,7 @@
 package huce.edu.vn.campain.service;
 
 import huce.edu.vn.campain.BodyRequest.MemberShipInfoSave;
+import huce.edu.vn.campain.Id.MemberShipInfoId;
 import huce.edu.vn.campain.entity.MemberShipInfo;
 import huce.edu.vn.campain.repository.MemberShipInfoRepository;
 import huce.edu.vn.campain.repository.UserRepository;
@@ -22,11 +23,14 @@ public class MemberShipInfoService {
 
     public MemberShipInfo addMemberShipInfo(MemberShipInfoSave memberShipInfoSave){
         MemberShipInfo memberShipInfo = new MemberShipInfo();
+        MemberShipInfoId memberShipInfoId = new MemberShipInfoId();
+        memberShipInfoId.setId(memberShipInfoSave.getUserId());
+        memberShipInfo.setId(memberShipInfoId);
         memberShipInfo.setUserToMemberShipInfo(userRepository.findFirstByID(memberShipInfoSave.getUserId()));
-        memberShipInfo.setPhone(memberShipInfo.getPhone());
-        memberShipInfo.setAddress(memberShipInfo.getAddress());
-        memberShipInfo.setAvatar(memberShipInfo.getAvatar());
-        memberShipInfo.setOrganization(memberShipInfo.getOrganization());
+        memberShipInfo.setPhone(memberShipInfoSave.getPhone());
+        memberShipInfo.setAddress(memberShipInfoSave.getAddress());
+        memberShipInfo.setAvatar(memberShipInfoSave.getAvatar());
+        memberShipInfo.setOrganization(memberShipInfoSave.getOrganization());
         return memberShipInfoRepository.save(memberShipInfo);
     }
 

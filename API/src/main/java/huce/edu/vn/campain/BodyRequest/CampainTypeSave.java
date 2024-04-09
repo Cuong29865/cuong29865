@@ -15,4 +15,9 @@ import java.util.List;
 public class CampainTypeSave {
     private String description;
     private String fieldType;
+    public CampainTypeSave(){}
+    public CampainTypeSave(String description, String fieldType){
+        this.description = description;
+        this.fieldType = fieldType;
+    }
 }

@@ -19,13 +19,13 @@ public class OptionController {
     //Thêm mới một lựa chọn trong một chiến dịch
     @PostMapping("/addNewOption")
     public Option addNewOption(@RequestBody AddNewOption addNewOption){
-        return optionService.addNewOption(addNewOption.getId(), addNewOption.getDescription(), addNewOption.getImage(), addNewOption.getTitle());
+        return optionService.addNewOption(addNewOption.getCampainId(), addNewOption.getDescription(), addNewOption.getImage(), addNewOption.getTitle());
     }
 
     //Cập nhập một lựa chọn trong một chiến dịch
-    @PutMapping("/updateOption")
-    public Option updateOption(@RequestBody AddNewOption addNewOption){
-        return optionService.updateOption(addNewOption.getId(), addNewOption.getDescription(), addNewOption.getImage(), addNewOption.getTitle());
+    @PutMapping("/updateOption/{optionId}")
+    public Option updateOption(@PathVariable int optionId, @RequestBody AddNewOption addNewOption){
+        return optionService.updateOption(optionId, addNewOption.getDescription(), addNewOption.getImage(), addNewOption.getTitle());
     }
 
 

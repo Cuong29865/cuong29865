@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CampainService {
@@ -35,13 +36,13 @@ public class CampainService {
     }
 
     public List<CampainMore> findCampainByStartAndEnd(String timeStart, String timeEnd){
-        if(timeStart == "") timeStart = LocalDateTime.MIN.toString();
+        if(Objects.equals(timeStart, "")) timeStart = LocalDateTime.MIN.toString();
         else if(!timeStart.contains("T") && !timeStart.contains(" ")){
             timeStart += "T00:00:00";
         } else{
             timeStart = timeStart.replace(" ", "T");
         }
-        if(timeEnd == "") timeEnd = "9999-12-31T23:59:59";
+        if(Objects.equals(timeEnd, "")) timeEnd = "9999-12-31T23:59:59";
         else if(!timeEnd.contains("T") && !timeEnd.contains(" ")){
             timeEnd += "T00:00:00";
         } else{

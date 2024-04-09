@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `membershipinfo`
+-- Table structure for table `selection`
 --
 
-DROP TABLE IF EXISTS `membershipinfo`;
+DROP TABLE IF EXISTS `selection`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `membershipinfo` (
-  `User ID` int(10) unsigned zerofill NOT NULL,
-  `Phone` varchar(255) NOT NULL,
-  `Address` varchar(255) NOT NULL,
-  `Avatar` longtext NOT NULL,
-  `Organization` varchar(255) NOT NULL,
-  PRIMARY KEY (`User ID`),
-  KEY `userKey_idx` (`User ID`),
-  CONSTRAINT `userKey1` FOREIGN KEY (`User ID`) REFERENCES `user` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `selection` (
+  `Id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `Campain Id` int(10) unsigned zerofill NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `Image` varchar(255) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `campainKey_idx` (`Campain Id`),
+  CONSTRAINT `campainKey` FOREIGN KEY (`Campain Id`) REFERENCES `campain` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `membershipinfo`
+-- Dumping data for table `selection`
 --
 
-LOCK TABLES `membershipinfo` WRITE;
-/*!40000 ALTER TABLE `membershipinfo` DISABLE KEYS */;
-INSERT INTO `membershipinfo` VALUES (0000000001,'123456','Hà Nội','root','Đại Học Xây Dựng'),(0000000002,'12313124','Yên Bình','root','Đại Học Xây Dựng');
-/*!40000 ALTER TABLE `membershipinfo` ENABLE KEYS */;
+LOCK TABLES `selection` WRITE;
+/*!40000 ALTER TABLE `selection` DISABLE KEYS */;
+INSERT INTO `selection` VALUES (0000000001,0000000001,'Yêu thích giải tích','root','Giải tích'),(0000000002,0000000001,'Yêu thích đại số','root','Đại số'),(0000000003,0000000001,'Yêu thích vi sử lý','root','Vi sử lý'),(0000000004,0000000001,'Yêu thích C++','new','C++');
+/*!40000 ALTER TABLE `selection` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-04 21:31:21
+-- Dump completed on 2024-04-09 15:15:18

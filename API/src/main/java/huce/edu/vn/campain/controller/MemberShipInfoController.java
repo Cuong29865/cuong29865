@@ -26,9 +26,9 @@ public class MemberShipInfoController {
     public MemberShipInfo addMemberShipInfo(@RequestBody MemberShipInfoSave memberShipInfoSave){
         return memberShipInfoService.addMemberShipInfo(memberShipInfoSave);
     }
-    @GetMapping("/deleteMemberShipInfo/{campainId}")
-    public MemberShipInfo deleteMemberShipInfo(@PathVariable int campainId){
-        return memberShipInfoService.deleteMemberShipInfo(campainId);
+    @GetMapping("/deleteMemberShipInfo/{memberShipInfo}")
+    public MemberShipInfo deleteMemberShipInfo(@PathVariable int memberShipInfo){
+        return memberShipInfoService.deleteMemberShipInfo(memberShipInfo);
     }
     @PutMapping("/updateMemberShipInfo")
     public MemberShipInfo updateMemberShipInfo(@RequestBody MemberShipInfoSave memberShipInfoSave){

@@ -41,6 +41,7 @@ public class UserService {
         } else{
             userSave.setDateModified(userSave.getDateModified().replace(" ", "T"));
         }
+        user.setDateCreate(LocalDateTime.parse(userSave.getDateCreate()));
         user.setDateModified(LocalDateTime.parse(userSave.getDateModified()));
         user.setStatus(userSave.getStatus());
         return userRepository.save(user);

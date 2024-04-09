@@ -22,8 +22,8 @@ public class CampainTypeService {
 
     public CampainType addCampainType(CampainTypeSave campainTypeSave){
         CampainType campainType = new CampainType();
-        campainType.setFieldType(campainType.getFieldType());
-        campainType.setDescription(campainType.getDescription());
+        campainType.setFieldType(campainTypeSave.getFieldType());
+        campainType.setDescription(campainTypeSave.getDescription());
         return campainTypeRepository.save(campainType);
     }
 
@@ -35,8 +35,8 @@ public class CampainTypeService {
 
     public CampainType updateCampainType(int campainTypeId, CampainTypeSave campainTypeSave){
         CampainType campainType = campainTypeRepository.findFirstById(campainTypeId);
-        campainType.setFieldType(campainType.getFieldType());
-        campainType.setDescription(campainType.getDescription());
+        campainType.setFieldType(campainTypeSave.getFieldType());
+        campainType.setDescription(campainTypeSave.getDescription());
         return campainTypeRepository.save(campainType);
     }
 }

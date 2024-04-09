@@ -16,32 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `selection`
+-- Table structure for table `vote`
 --
 
-DROP TABLE IF EXISTS `selection`;
+DROP TABLE IF EXISTS `vote`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `selection` (
+CREATE TABLE `vote` (
   `Id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `Campain Id` int(10) unsigned zerofill NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Image` varchar(255) NOT NULL,
-  `Title` varchar(255) NOT NULL,
+  `Option Id` int(10) unsigned zerofill NOT NULL,
+  `Attend Id` int(10) unsigned zerofill NOT NULL,
+  `Value` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`),
-  KEY `campainKey_idx` (`Campain Id`),
-  CONSTRAINT `campainKey` FOREIGN KEY (`Campain Id`) REFERENCES `campain` (`Id`)
+  KEY `attendKey_idx` (`Attend Id`),
+  KEY `optionKey_idx` (`Option Id`),
+  CONSTRAINT `attendKey` FOREIGN KEY (`Attend Id`) REFERENCES `attend` (`Id`),
+  CONSTRAINT `optionKey` FOREIGN KEY (`Option Id`) REFERENCES `selection` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `selection`
+-- Dumping data for table `vote`
 --
 
-LOCK TABLES `selection` WRITE;
-/*!40000 ALTER TABLE `selection` DISABLE KEYS */;
-INSERT INTO `selection` VALUES (0000000001,0000000001,'Yêu thích giải tích','root','Giải tích'),(0000000002,0000000001,'Yêu thích đại số','root','Đại số'),(0000000003,0000000001,'Yêu thích vi sử lý','root','Vi sử lý'),(0000000004,0000000001,'Yêu thích ANM','root','ANM');
-/*!40000 ALTER TABLE `selection` ENABLE KEYS */;
+LOCK TABLES `vote` WRITE;
+/*!40000 ALTER TABLE `vote` DISABLE KEYS */;
+INSERT INTO `vote` VALUES (0000000002,0000000001,0000000001,'Giải tích'),(0000000003,0000000002,0000000001,'Đại số');
+/*!40000 ALTER TABLE `vote` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-04 21:31:20
+-- Dump completed on 2024-04-09 15:15:18

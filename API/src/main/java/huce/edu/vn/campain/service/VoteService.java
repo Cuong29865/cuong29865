@@ -16,15 +16,13 @@ public class VoteService {
     @Autowired
     private AttendRepository attendRepository;
     @Autowired
-    private SelectionRepository selectionRepository;
-    @Autowired
     private OptionRepository optionRepository;
 
     public Vote addNewVote(int user, int selection){
         Vote vote = new Vote();
         vote.setAttendToVote(attendRepository.findFirstById(user));
-        vote.setOptionToVote(selectionRepository.findFirstById(selection));
-        vote.setValue(selectionRepository.findFirstById(selection).getTitle());
+        vote.setOptionToVote(optionRepository.findFirstById(selection));
+        vote.setValue(optionRepository.findFirstById(selection).getTitle());
         voteRepository.save(vote);
         return voteRepository.findFirstByOrderByIdDesc();
     }

@@ -1,6 +1,7 @@
 package huce.edu.vn.campain.controller;
 
 import huce.edu.vn.campain.BodyRequest.AddNewAttend;
+import huce.edu.vn.campain.BodyRequest.AttendSave;
 import huce.edu.vn.campain.entity.Attend;
 import huce.edu.vn.campain.entityConnect.AttendMore;
 import huce.edu.vn.campain.BodyRequest.UserSearch;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/campain")
+@RequestMapping("/attend")
 public class AttendController {
     @Autowired
     private AttendService attendService;
@@ -53,5 +54,26 @@ public class AttendController {
     @PostMapping("/addNewAttend")
     public Attend addNewAttend(@RequestBody AddNewAttend addNewAttend){
         return attendService.addNewAttend(addNewAttend.getCampainId(), addNewAttend.getUserId());
+    }
+
+
+
+    //Api từng bảng
+    @GetMapping("/getAllTableAttend")
+    public List<Attend> getAllTableAttend(){
+        return attendService.getAllAttend();
+    }
+
+    @PostMapping("/addAttend")
+    public Attend addAttend(@RequestBody AttendSave attendSave){
+        return attendService.addAttend(attendSave);
+    }
+    @GetMapping("/deleteAttend/{attendId}")
+    public Attend deleteAttend(@PathVariable int attendId){
+        return attendService.deleteAttend(attendId);
+    }
+    @PutMapping("/updateAttend/{attendId}")
+    public Attend updateAttend(@PathVariable int attendId, @RequestBody AttendSave attendSave){
+        return attendService.updateAttend(attendId, attendSave);
     }
 }

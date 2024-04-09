@@ -1,5 +1,6 @@
 package huce.edu.vn.campain.service;
 
+import huce.edu.vn.campain.BodyRequest.CampainSave;
 import huce.edu.vn.campain.entity.Campain;
 import huce.edu.vn.campain.entity.Option;
 import huce.edu.vn.campain.entityConnect.CampainMore;
@@ -96,6 +97,68 @@ public class CampainService {
         campain.setCampainTypeToCampain(campainTypeRepository.findFirstById(campainTypeId));
         campain.setUserToCampain(userRepository.findFirstByID(userId));
         campain.setStatus(status);
+        return campainRepository.save(campain);
+    }
+
+
+
+    //Truy xuất bảng đơn
+    public List<Campain> getAllCampain(){
+        return campainRepository.findAll();
+    }
+    public Campain addCampain(CampainSave campainSave){
+        Campain campain = new Campain();
+        if(campainSave.getStart() == "") campainSave.setStart(LocalDateTime.MIN.toString());
+        else if(!campainSave.getStart().contains("T") && !campainSave.getStart().contains(" ")){
+            campainSave.setStart(campainSave.getStart() + "T00:00:00");
+        } else{
+            campainSave.setStart(campainSave.getStart().replace(" ", "T"));
+        }
+        if(campainSave.getEnd() == "") campainSave.setEnd("9999-12-31T23:59:59");
+        else if(!campainSave.getEnd().contains("T") && !campainSave.getEnd().contains(" ")){
+            campainSave.setEnd(campainSave.getEnd() + "T00:00:00");
+        } else{
+            campainSave.setEnd(campainSave.getEnd().replace(" ", "T"));
+        }
+        campain.setTitle(campainSave.getTitle());
+        campain.setDescription(campainSave.getDescription());
+        campain.setCampainTypeToCampain(campainTypeRepository.findFirstById(campainSave.getCampainTypeId()));
+        campain.setStart(LocalDateTime.parse(campainSave.getStart()));
+        campain.setEnd(LocalDateTime.parse(campainSave.getEnd()));
+        campain.setStatus(campainSave.getStatus());
+        campain.setMetadata(campainSave.getMetadata());
+        campain.setResult(campainSave.getResult());
+        campain.setUserToCampain(userRepository.findFirstByID(campainSave.getUserId()));
+        return campainRepository.save(campain);
+    }
+    public Campain deleteCampain(int id){
+        Campain campain = campainRepository.findFirstById(id);
+        campainRepository.delete(campain);
+        return campain;
+    }
+    public Campain updateCampain(int campainId, CampainSave campainSave){
+        Campain campain = campainRepository.findFirstById(campainId);
+        if(campainSave.getStart() == "") campainSave.setStart(LocalDateTime.MIN.toString());
+        else if(!campainSave.getStart().contains("T") && !campainSave.getStart().contains(" ")){
+            campainSave.setStart(campainSave.getStart() + "T00:00:00");
+        } else{
+            campainSave.setStart(campainSave.getStart().replace(" ", "T"));
+        }
+        if(campainSave.getEnd() == "") campainSave.setEnd("9999-12-31T23:59:59");
+        else if(!campainSave.getEnd().contains("T") && !campainSave.getEnd().contains(" ")){
+            campainSave.setEnd(campainSave.getEnd() + "T00:00:00");
+        } else{
+            campainSave.setEnd(campainSave.getEnd().replace(" ", "T"));
+        }
+        campain.setTitle(campainSave.getTitle());
+        campain.setDescription(campainSave.getDescription());
+        campain.setCampainTypeToCampain(campainTypeRepository.findFirstById(campainSave.getCampainTypeId()));
+        campain.setStart(LocalDateTime.parse(campainSave.getStart()));
+        campain.setEnd(LocalDateTime.parse(campainSave.getEnd()));
+        campain.setStatus(campainSave.getStatus());
+        campain.setMetadata(campainSave.getMetadata());
+        campain.setResult(campainSave.getResult());
+        campain.setUserToCampain(userRepository.findFirstByID(campainSave.getUserId()));
         return campainRepository.save(campain);
     }
 }

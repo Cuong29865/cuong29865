@@ -7,12 +7,24 @@ import huce.edu.vn.campain.repository.OptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OptionService {
     @Autowired
     private OptionRepository optionRepository;
     @Autowired
     private CampainRepository campainRepository;
+
+    public List<Option> getAllOption(){
+        return optionRepository.findAll();
+    }
+
+    public Option deleteOption(int optionId){
+        Option option = optionRepository.findFirstById(optionId);
+        optionRepository.delete(option);
+        return option;
+    }
 
     public Option addNewOption(int campain, String description, String image, String title){
         Option option = new Option();

@@ -1,11 +1,10 @@
 package huce.edu.vn.campain.controller;
 
-import huce.edu.vn.campain.BodyRequest.AddNewCampain;
-import huce.edu.vn.campain.BodyRequest.UpdateCampain;
+import huce.edu.vn.campain.BodyRequest.*;
+import huce.edu.vn.campain.entity.Attend;
 import huce.edu.vn.campain.entity.Campain;
 import huce.edu.vn.campain.entity.Option;
 import huce.edu.vn.campain.entityConnect.CampainMore;
-import huce.edu.vn.campain.BodyRequest.TimeCampain;
 import huce.edu.vn.campain.service.CampainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -50,5 +49,24 @@ public class CampainController {
     @PutMapping("/updateCampain")
     public Campain updateCampain(@RequestBody UpdateCampain updateCampain){
         return campainService.updateCampain(updateCampain.getCampainId(), updateCampain.getTimeStart(), updateCampain.getTimeEnd(), updateCampain.getTitle(), updateCampain.getStatus(), updateCampain.getCampainTypeId(), updateCampain.getUserId());
+    }
+
+    //Api từng bảng
+    @GetMapping("/getAllCampain")
+    public List<Campain> getAllCampain(){
+        return campainService.getAllCampain();
+    }
+
+    @PostMapping("/addCampain")
+    public Campain addCampain(@RequestBody CampainSave campainSave){
+        return campainService.addCampain(campainSave);
+    }
+    @GetMapping("/deleteCampain/{campainId}")
+    public Campain deleteCampain(@PathVariable int campainId){
+        return campainService.deleteCampain(campainId);
+    }
+    @PutMapping("/updateCampain/{campainId}")
+    public Campain updateCampain(@PathVariable int campainId, @RequestBody CampainSave campainSave){
+        return campainService.updateCampain(campainId, campainSave);
     }
 }

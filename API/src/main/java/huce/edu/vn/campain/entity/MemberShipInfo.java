@@ -1,5 +1,6 @@
 package huce.edu.vn.campain.entity;
 
+import huce.edu.vn.campain.Id.MemberShipInfoId;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +10,11 @@ import lombok.Setter;
 @Setter
 @Table(name = "membershipinfo")
 public class MemberShipInfo {
-    @Id
+    @EmbeddedId
+    private MemberShipInfoId id;
+
     @ManyToOne
+    @MapsId("id")
     @JoinColumn(name = "User ID")
     private User userToMemberShipInfo;
 

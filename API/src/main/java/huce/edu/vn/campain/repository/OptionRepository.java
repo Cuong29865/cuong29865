@@ -9,4 +9,5 @@ public interface OptionRepository extends JpaRepository<Option, Integer> {
     public Option findFirstByOrderByIdDesc();
 
     public Option findFirstById(int id);
+
 }
